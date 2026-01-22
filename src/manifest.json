@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "网站自动轮询助手",
+  "version": "1.0",
+  "description": "定时打开指定网页，并通过Gotify发送运行通知",
+  "permissions": [
+    "storage",
+    "alarms",
+    "tabs",
+    "declarativeNetRequest"  
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "配置任务",
+    "default_popup": "popup.html"
+  }
+}

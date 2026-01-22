@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { width: 350px; padding: 15px; font-family: sans-serif; font-size: 13px; }
+    h3 { margin-top: 0; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .form-group { margin-bottom: 10px; }
+    label { display: block; font-weight: bold; margin-bottom: 3px; }
+    input, select, textarea { width: 100%; box-sizing: border-box; padding: 5px; }
+    textarea { height: 60px; resize: vertical; }
+    button { width: 48%; padding: 8px; cursor: pointer; }
+    #btn-container { display: flex; justify-content: space-between; margin-top: 10px; }
+    #logs { height: 100px; overflow-y: scroll; background: #f0f0f0; border: 1px solid #ccc; padding: 5px; margin-top: 10px; font-family: monospace; font-size: 11px; white-space: pre-wrap; }
+    .hidden { display: none; }
+    .error { color: red; }
+    /* Token开关样式 */
+    .token-toggle { display: flex; align-items: center; margin-top: 3px; font-size: 11px; font-weight: normal; color: #555; }
+    .token-toggle input { width: auto; margin-right: 5px; }
+  </style>
+</head>
+<body>
+  <h3>TabScheduler 设置</h3>
+  
+  <div class="form-group">
+    <label>需要打开的网址 (每行一个):</label>
+    <textarea id="urls" placeholder="https://www.google.com&#10;https://www.baidu.com"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>定时跑任务:</label>
+    <select id="cycleType">
+      <option value="daily">每天</option>
+      <option value="weekly">每周</option>
+      <option value="monthly">每月</option>
+    </select>
+  </div>
+
+  <div class="form-group" id="cycleDetail">
+    <!-- 动态显示周几或几号 -->
+    <select id="daySelect" class="hidden"></select>
+    <input type="time" id="timeSelect">
+  </div>
+
+  <div class="form-group">
+    <label>Gotify URL (选填):</label>
+    <input type="text" id="gotifyUrl" placeholder="https://push.example.com/message">
+  </div>
+  <div class="form-group">
+    <label>Gotify Token (选填):</label>
+    <!-- 修改点：初始 type 改为 password -->
+    <input type="password" id="gotifyToken" placeholder="AppToken...">
+    <!-- 修改点：显示/隐藏开关 -->
+    <label class="token-toggle">
+        <input type="checkbox" id="showToken"> 显示 Token
+    </label>
+  </div>
+
+  <div id="btn-container">
+    <button id="saveBtn">保存并在后台运行</button>
+    <button id="runNowBtn" style="background-color: #e0f7fa;">立即执行一次</button>
+  </div>
+
+  <label style="margin-top:15px;">运行日志/错误 (近100条):</label>
+  <div id="logs">暂无日志...</div>
+
+  <button id="clearLogs" style="width:100%; margin-top:5px; font-size:10px;">清空日志</button>
+  <script src="popup.js"></script>
+</body>
+</html>
