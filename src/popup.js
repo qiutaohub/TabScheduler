@@ -31,11 +31,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 监听周期类型变化，更新下拉框
     els.cycleType.addEventListener('change', (e) => updateDaySelect(e.target.value));
 
-    // --- 修改点：监听显示Token复选框变化 ---
-    els.showToken.addEventListener('change', (e) => {
-        els.gotifyToken.type = e.target.checked ? 'text' : 'password';
-    });
-    // ------------------------------------
+    // 移除 Token 显示切换逻辑，确保安全
+    els.showToken.disabled = true;
+    els.showToken.parentElement.style.display = 'none';
 
     // 保存设置
     els.saveBtn.addEventListener('click', async () => {
